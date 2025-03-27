@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.text.input.ImeAction
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 
 val SEARCH_BAR_HEIGHT = 56.dp
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
@@ -91,5 +93,8 @@ fun SearchBar(
     )
     LaunchedEffect(Unit) {
         canFocus = true
+    }
+    androidx.compose.ui.backhandler.BackHandler(true) {
+        canFocus = false
     }
 }
